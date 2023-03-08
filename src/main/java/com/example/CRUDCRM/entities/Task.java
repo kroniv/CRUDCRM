@@ -2,6 +2,7 @@ package com.example.CRUDCRM.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -34,9 +35,11 @@ public class Task {
 
   @ManyToOne
   @JoinColumn(name = "project_id", referencedColumnName = "id")
+  @JsonIgnore
   private Project project;
 
   @ManyToOne
   @JoinColumn(name = "sub_project_id", referencedColumnName = "id")
+  @JsonIgnore
   private SubProject subProject;
 }
