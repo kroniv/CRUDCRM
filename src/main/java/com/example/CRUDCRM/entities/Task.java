@@ -14,6 +14,9 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "task")
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id")
 public class Task {
 
   @Id
@@ -31,11 +34,9 @@ public class Task {
 
   @ManyToOne
   @JoinColumn(name = "project_id", referencedColumnName = "id")
-  @JsonBackReference
   private Project project;
 
   @ManyToOne
   @JoinColumn(name = "sub_project_id", referencedColumnName = "id")
-  @JsonBackReference
   private SubProject subProject;
 }

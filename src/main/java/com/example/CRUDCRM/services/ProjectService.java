@@ -10,5 +10,5 @@ public interface ProjectService {
 
   public List<ProjectDTO> getAllProjects();
   public ProjectDTO getProjectById(Long id);
-  public void postProject(Project project);
+  public void postProject(ProjectDTO projectDTO);
 }

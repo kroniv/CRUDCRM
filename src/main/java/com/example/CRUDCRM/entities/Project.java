@@ -20,6 +20,9 @@ import lombok.NoArgsConstructor;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id")
 public class Project {
 
   @Id
@@ -28,11 +31,9 @@ public class Project {
   private String projectName;
 
   @OneToMany(mappedBy = "project")
-  @JsonManagedReference
   private List<SubProject> subProjects;
 
   @OneToMany(mappedBy = "project")
-  @JsonManagedReference
   private List<Task> tasks;
 
 }

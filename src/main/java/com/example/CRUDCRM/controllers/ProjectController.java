@@ -37,8 +37,8 @@ public class ProjectController {
   }
 
   @PostMapping()
-  public ResponseEntity<Void> postProject(@RequestBody Project project) {
-    projectService.postProject(project);
+  public ResponseEntity<Void> postProject(@RequestBody ProjectDTO projectDTO) {
+    projectService.postProject(projectDTO);
     return ResponseEntity.noContent().build();
   }
 }

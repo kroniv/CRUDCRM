@@ -34,7 +34,8 @@ public class ProjectServiceImpl implements ProjectService {
   }
 
   @Override
-  public void postProject(Project project) {
+  public void postProject(ProjectDTO projectDTO) {
+    Project project = toEntity(projectDTO);
     projectRepository.save(project);
   }
 

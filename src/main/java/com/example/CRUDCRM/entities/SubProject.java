@@ -18,6 +18,9 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "sub_project")
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id")
 public class SubProject {
 
   @Id
@@ -27,10 +30,8 @@ public class SubProject {
 
   @ManyToOne(fetch= FetchType.LAZY)
   @JoinColumn(name = "project_id", referencedColumnName = "id")
-  @JsonBackReference
   private Project project;
 
   @OneToMany(fetch=FetchType.LAZY, mappedBy = "subProject")
-  @JsonManagedReference
   private List<Task> tasks;
 }
