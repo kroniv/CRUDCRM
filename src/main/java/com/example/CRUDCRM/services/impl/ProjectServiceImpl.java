@@ -1,8 +1,9 @@
-package com.example.CRUDCRM.services;
+package com.example.CRUDCRM.services.impl;
 
 import com.example.CRUDCRM.dto.ProjectDTO;
 import com.example.CRUDCRM.entities.Project;
 import com.example.CRUDCRM.repositories.ProjectRepository;
+import com.example.CRUDCRM.services.ProjectService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class ProjectServiceImpl implements ProjectService {
   }
 
   @Override
-  public ProjectDTO getProjectById(Long id) {
+  public ProjectDTO getProjectDTOById(Long id) {
     Optional<Project> optional = projectRepository.findById(id);
     if (projectRepository.findById(id).isEmpty()) {
       return null;
@@ -38,6 +39,19 @@ public class ProjectServiceImpl implements ProjectService {
     Project project = toEntity(projectDTO);
     projectRepository.save(project);
   }
+
+  public Project getProjectById(Long id) {
+    if (id == null) {
+      return null;
+    }
+    Optional<Project> optional = projectRepository.findById(id);
+    if (projectRepository.findById(id).isEmpty()) {
+      return null;
+    } else {
+      return optional.get();
+    }
+  }
+
 
   private Project toEntity(ProjectDTO projectDTO) {
     return new Project(
